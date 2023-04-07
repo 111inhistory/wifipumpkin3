@@ -1,7 +1,8 @@
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, redirect, render_template, send_from_directory
 from urllib.parse import urlencode, unquote
 from wifipumpkin3.core.utility.collection import SettingsINI
 import wifipumpkin3.core.utility.constants as C
+import os
 import sys
 import subprocess
 import argparse
@@ -22,6 +23,11 @@ def login_user(ip, iptables_binary_path):
         [iptables_binary_path, "-t", "nat", "-I", "PREROUTING", "1", "-s", ip, "-j", "ACCEPT"]
     )
     subprocess.call([iptables_binary_path, "-I", "FORWARD", "-s", ip, "-j", "ACCEPT"])
+    
+@app.route("/download/<filename>", methods=["GET"])
+def download(filename):
+    d = os. #TODO
+    return send_from_directory(d, filename, as_attachment=True)
 
 
 @app.route("/login", methods=["GET", "POST"])
