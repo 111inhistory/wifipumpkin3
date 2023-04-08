@@ -26,7 +26,7 @@ def login_user(ip, iptables_binary_path):
     
 @app.route("/download/<filename>", methods=["GET"])
 def download(filename):
-    d = os.path.abspath("/templates/files/"+filename) #TODO
+    d = os.path.abspath("/templates/files/")
     return send_from_directory(d, filename, as_attachment=True)
 
 
